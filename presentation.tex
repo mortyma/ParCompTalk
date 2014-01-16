@@ -38,19 +38,22 @@
 \item \fB{MPI} message passing, distributed memory
 \item \fB{OpenMP} shared memory
 \item \fB{OpenCL} across heterogenous platforms
+
+\bigskip
+\item \fB{Hybrid architecures} MPI/OpenMP, OpenMP/OpenCL,...
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{The problem}
 
-\fB{Compiler view:} just another library used by a sequential host language
+\fB{Compiler view:} Just another library used by a sequential host language. Parallel constructs \fR{not native} constructs within most programming languages.
 
 \bigskip\pause
-\fR{Parallel control flow} remains \fR{hidden} in library calls embedded in sequential IR\footnote{IR: intermediate representation }
+\fR{Parallel control flow} remains \fR{hidden} in library calls embedded in sequential IR\footnote{IR: intermediate representation}.
 
 \bigskip\pause
-Sequential IR \fR{cannot represent parallelism} appropriately
+Sequential IR \fR{cannot represent parallelism} appropriately and explicitly.
 
 \bigskip\pause
 $\Rightarrow$ \fR{Optimizations} of parallel constructs \fR{not possible} for compiler. 
@@ -58,24 +61,25 @@ $\Rightarrow$ \fR{Optimizations} of parallel constructs \fR{not possible} for co
 
 \begin{frame}
 \frametitle{The idea}
-\fB{INSPIRE} is a
+\fB{INSPIRE}~\cite{JordanPTKF13}  is a
 \begin{itemize}
 \item unified,
 \item parallel,
-\item high-level IR
+\item high-level,
+\item language independent IR
 
 \smallskip
 modelling parallel constructs explicitly.
-
-\bigskip\pause
-\fG{Goal:} Make parallel control flow available to compiler
 \end{itemize}
-
+\bigskip\pause
+\fG{Goal:} Make parallel control flow available to compiler.
 \end{frame}
 
 \begin{frame}
-\cite{JordanPTKF13}
+\frametitle{}
 \end{frame}
+
+
 
 %---------------------------------------------------------------------
 %bibliography
