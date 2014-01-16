@@ -1,0 +1,43 @@
+\documentclass{beamer}
+\let\Tiny=\tiny %to avoid warnings related to font size and beamer 
+\usetheme{Amsterdam}
+\usecolortheme{dolphin}
+
+\usepackage{comment}
+
+\usepackage[style=numeric-comp,backend=bibtex]{biblatex}
+\addbibresource{sources}
+
+%reduce font size of footnotes
+\let\oldfootnotesize\footnotesize
+\renewcommand*{\footnotesize}{\oldfootnotesize\tiny}
+
+%---------------------------------------------------------------------
+%Front matter
+%---------------------------------------------------------------------
+\title{INSPIRE}
+\subtitle{The Insieme Parallel Intermediate Representation}
+\author{Martin Kalany}
+\institute
+{
+  Graduate student in Computer Science\\
+  Vienna University of Technology\\
+}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+
+\begin{frame}
+\cite{JordanPTKF13}
+\end{frame}
+
+%---------------------------------------------------------------------
+%bibliography
+%---------------------------------------------------------------------
+\begin{frame}[allowframebreaks]
+\frametitle<presentation>{Literature}    
+\printbibliography
+\end{frame} 	 
+\end{document}
