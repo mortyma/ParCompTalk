@@ -12,6 +12,9 @@
 \let\oldfootnotesize\footnotesize
 \renewcommand*{\footnotesize}{\oldfootnotesize\tiny}
 
+\newcommand\fR[1]{\textcolor{red!80!black}{\textbf{#1}}}
+
+
 %---------------------------------------------------------------------
 %Front matter
 %---------------------------------------------------------------------
@@ -28,6 +31,45 @@
 \begin{document}
 \maketitle
 
+\begin{frame}
+\frametitle{Some standards for parallel programming}
+\begin{itemize}
+\item \fR{MPI} message passing, distributed memory
+\item \fR{OpenMP} shared memory
+\item \fR{OpenCL} across heterogenous platforms
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{The problem}
+
+\fR{Compiler view:} just another library used by a sequential host language
+
+\bigskip\pause
+\fR{Parallel control flow} remains \fR{hidden} in library calls embedded in sequential IR\footnote{IR: intermediate representation }
+
+\bigskip\pause
+Sequential IR \fR{cannot represent parallelism} appropriately
+
+\bigskip\pause
+$\Rightarrow$ \fR{Optimizations} of parallel constructs \fR{not possible} for compiler. 
+\end{frame}
+
+\begin{frame}
+\frametitle{The idea}
+\fR{INSPIRE} is a
+\begin{itemize}
+\item unified,
+\item parallel,
+\item high-level IR
+
+modelling parallel constructs explicitly.
+
+\bigskip\pause
+$\Rightarrow$ Make parallel control flow available to compiler
+\end{itemize}
+
+\end{frame}
 
 \begin{frame}
 \cite{JordanPTKF13}
