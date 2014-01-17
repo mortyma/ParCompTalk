@@ -61,7 +61,7 @@ Sequential IR \fR{cannot represent parallelism} appropriately and explicitly.
 $\Rightarrow$ \fR{Optimizations} of parallel constructs \fR{not possible} for compiler. 
 \end{frame}
 
-\section{Inspire}
+\section{Conceps}
 \begin{frame}
 \frametitle{The idea}
 \fB{INSPIRE}~\cite{JordanPTKF13}  is a
@@ -79,7 +79,36 @@ modelling parallel constructs explicitly.
 \end{frame}
 
 \begin{frame}
-\frametitle{}
+\frametitle{Some concepts}
+INSPIRE is based on recursively nested thread groups
+
+\bigskip
+\fB{Thread}: Arbitrary entity capable of preocessing sequential control flow (e.g., OS and OpenMP threads, MPI Processes, OpenCL work items,...)
+
+\bigskip
+\fB{Job}: executed cooperatively by each thread in a group
+
+\bigskip
+\fB{Spawn}: A thread may spawn a new thread group
+
+\bigskip
+\fB{Merge} and \fB{MergeAll}: Block until referenced thread group finished 
+\end{frame}
+
+\begin{frame}
+\frametitle{Concepts cont.}
+\fB{Inter-Thread Communication}
+\begin{itemize}
+\item \fB{pfor}: distribute work (e.g., \texttt{parallel for} in OpenMP)
+\item \fB{redistribute}: data redistribution (e.g., \texttt{scatter} and \texttt{gather} in MPI). Collects contributions from all threads; generic function to select what piece of information available to local thread.
+\item \fB{channels}: Point to point communication
+\end{itemize}
+
+\bigskip
+pfor and redistribute are reduction operations. The latter is a blocking operation.
+
+\bigskip\pause
+Generic \fB{atomic} operator: conditional, protected assignment to single memory location.
 \end{frame}
 
 
