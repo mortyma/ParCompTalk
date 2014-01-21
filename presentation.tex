@@ -56,7 +56,7 @@
 \fR{Parallel control flow} remains \fR{hidden} in library calls embedded in sequential IR\footnote{IR: intermediate representation}.
 
 \bigskip\pause
-Sequential IR \fR{cannot represent parallelism} appropriately and explicitly.
+$\Rightarrow$ Sequential IR \fR{cannot represent parallelism} appropriately and explicitly.
 
 \bigskip\pause
 $\Rightarrow$ \fR{Optimizations} of parallel constructs \fR{not possible} for compiler. 
@@ -75,7 +75,6 @@ $\Rightarrow$ \fR{Optimizations} of parallel constructs \fR{not possible} for co
 \smallskip
 modelling parallel constructs explicitly.
 \end{itemize}
-\bigskip\pause
 \fG{Goal:} Make parallel control flow available to compiler.
 \end{frame}
 
@@ -116,9 +115,9 @@ INSPIRE is based on recursively nested thread groups
 \texttt{pfor}: $(int,int,int,(int,int,int) \Rightarrow unit) \rightarrow unit $  
 
 \bigskip\pause
-\item \fB{redistribute}: data redistribution (e.g., \texttt{scatter} and \texttt{gather} in MPI). Collects contributions from all threads; generic function to select what piece of information available to local thread.
+\item \fB{redistribute}: data redistribution (e.g., \texttt{scatter} and \texttt{gather} in MPI). 
 
-\texttt{redistribute}: $(\alpha, (array \langle\alpha\rangle) \Rightarrow \beta) \rightarrow \beta)$
+\texttt{redistribute}: $(\alpha, (array \langle\alpha\rangle) \Rightarrow \beta) \rightarrow \beta$
 
 \bigskip\pause
 \item \fB{channels}: Point to point communication.
@@ -133,7 +132,7 @@ INSPIRE is based on recursively nested thread groups
 
 \begin{frame}
 \frametitle{Concepts cont.}
-\texttt{pfor} and \texttt{redistribute} are \fB{reduction operations}. 
+\texttt{pfor} and \texttt{redistribute} are \fB{collective operators}. 
 
 Additionally, \texttt{redistribute} is a \fB{blocking operation}.
 \bigskip
