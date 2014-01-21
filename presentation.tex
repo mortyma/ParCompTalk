@@ -132,33 +132,12 @@ INSPIRE is based on recursively nested thread groups
 
 \begin{frame}
 \frametitle{Concepts cont.}
-\texttt{pfor} and \texttt{redistribute} are \fB{collective operators}. 
+\texttt{pfor} and \texttt{redistribute} are \fB{collective operatorsy}. 
 
 Additionally, \texttt{redistribute} is a \fB{blocking operation}.
 \bigskip
 
 Generic \fB{atomic} operator: conditional, protected assignment to single memory location.
-\end{frame}
-
-\begin{frame}
-\frametitle{IR Structure}
-
-\begin{figure}
-\centering
-\includegraphics[width=250pt]{structure}
-\caption{IR structure. Source: \cite{JordanPTKF13}}
-\end{figure}
-
-\begin{itemize}
-\item Does not reflect structure of translation units. 
-%(root is usually the file)
-
-\item Instead models actual execution as single expression. 
-%(root element is typically the main function)
-
-\item Function calls mapped at call site. 
-%(i.e., different calls represented by different nodes.  No global context required, context sensitive optimization possible and simple since node specific)
-\end{itemize}
 \end{frame}
 
 \section{Examples}
@@ -202,6 +181,27 @@ Obligatory \texttt{MPI\_Init} and \texttt{MPI\_Finalize} calls mapped to:
 \texttt{\}));}
 \end{frame}
 \end{comment}
+
+\begin{frame}
+\frametitle{IR Structure}
+
+\begin{figure}
+\centering
+\includegraphics[width=250pt]{structure}
+\caption{IR structure. Source: \cite{JordanPTKF13}}
+\end{figure}
+
+\begin{itemize}
+\item Does not reflect structure of translation units. 
+%(root is usually the file)
+
+\item Instead models actual execution as single expression. 
+%(root element is typically the main function)
+
+\item Function calls mapped at call site. 
+%(i.e., different calls represented by different nodes.  No global context required, context sensitive optimization possible and simple since node specific)
+\end{itemize}
+\end{frame}
 
 %---------------------------------------------------------------------
 %bibliography
