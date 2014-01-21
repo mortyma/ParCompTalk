@@ -101,14 +101,32 @@ INSPIRE is based on recursively nested thread groups
 \fB{Inter-Thread Communication}
 \begin{itemize}
 \item \fB{pfor}: distribute work (e.g., \texttt{parallel for} in OpenMP)
-\item \fB{redistribute}: data redistribution (e.g., \texttt{scatter} and \texttt{gather} in MPI). Collects contributions from all threads; generic function to select what piece of information available to local thread.
-\item \fB{channels}: Point to point communication
-\end{itemize}
 
-\bigskip
-\texttt{pfor} and \texttt{redistribute} are reduction operations. %The latter is a blocking operation.
+\texttt{pfor}: $(int,int,int,(int,int,int) \Rightarrow unit) \rightarrow unit $  
 
 \bigskip\pause
+\item \fB{redistribute}: data redistribution (e.g., \texttt{scatter} and \texttt{gather} in MPI). Collects contributions from all threads; generic function to select what piece of information available to local thread.
+
+\texttt{redistribute}: $(\alpha, (array \langle\alpha\rangle) \Rightarrow \beta) \rightarrow \beta)$
+
+\bigskip\pause
+\item \fB{channels}: Point to point communication.
+
+\texttt{channel.send}: $(channel\langle\alpha , a\rangle, \alpha) \rightarrow unit$
+
+\texttt{channel.receive}: $(channel\langle\alpha, a\rangle) \rightarrow \alpha $
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Concepts cont.}
+\texttt{pfor} and \texttt{redistribute} are \fB{reduction operations}. 
+
+Additionally, \texttt{redistribute} is a \fB{blocking operation}.
+\bigskip
+
 Generic \fB{atomic} operator: conditional, protected assignment to single memory location.
 \end{frame}
 
@@ -129,6 +147,46 @@ Generic \fB{atomic} operator: conditional, protected assignment to single memory
 \item Function calls mapped at call site. 
 %(i.e., different calls represented by different nodes.  No global context required, context sensitive optimization possible and simple since node specific)
 \end{itemize}
+\end{frame}
+
+\section{Examples}
+\begin{frame}
+\frametitle{Examples: OpenMP}
+
+\texttt{\#pragma omp parallel} $\Rightarrow$ \texttt{merge(spawn(JobA))}
+\medskip
+\newline\pause
+\texttt{\#pragma omp barrier} $\Rightarrow$ 
+
+
+\texttt{redistribute(unit, (array$\langle$unit$\rangle$ data) \{return unit;\})}
+\end{frame}
+
+\begin{frame}
+\frametitle{Example: MPI}
+
+\texttt{MPI\_Reduce(sendbuf, recvbuf, count=1, MPI\_INT, MPI\_SUM, root, comm);}
+\bigskip
+
+\texttt{redistribute(sendbuf, (array<int<p>> data) \{}
+\textcolor{white}{foo}\texttt{if(threadID $\neq$ root) return 0;}
+\newline
+\textcolor{white}{foo}\texttt{return sum(data);}
+\newline
+\texttt{\});}
+\end{frame}
+
+\begin{frame}
+Obligatory \texttt{MPI\_Init} and \texttt{MPI\_Finalize} calls mapped to:
+\bigskip
+
+\texttt{merge(spawn(job[p] \{}
+\newline
+\textcolor{white}{foo}\texttt{array<channel<msg,size>> com = \textcolor{white}{foobar}redeistribute(channel.create(msg, size), id);}
+\newline
+\textcolor{white}{foo}\texttt{channel.release(com[threadID]);}
+\newline
+\texttt{\}));}
 \end{frame}
 
 
