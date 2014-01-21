@@ -3,6 +3,7 @@
 \usetheme{Amsterdam}
 \usecolortheme{dolphin}
 
+\usepackage{graphicx}
 \usepackage{comment}
 
 \usepackage[style=numeric-comp,backend=bibtex]{biblatex}
@@ -105,12 +106,30 @@ INSPIRE is based on recursively nested thread groups
 \end{itemize}
 
 \bigskip
-pfor and redistribute are reduction operations. The latter is a blocking operation.
+\texttt{pfor} and \texttt{redistribute} are reduction operations. %The latter is a blocking operation.
 
 \bigskip\pause
 Generic \fB{atomic} operator: conditional, protected assignment to single memory location.
 \end{frame}
 
+\begin{frame}
+\frametitle{IR Structure}
+
+\begin{center}
+\includegraphics[width=250pt]{structure}
+\end{center}
+
+\begin{itemize}
+\item Does not reflect structure of translation units. 
+%(root is usually the file)
+
+\item Instead models actual execution as single expression. 
+%(root element is typically the main function)
+
+\item Function calls mapped at call site. 
+%(i.e., different calls represented by different nodes.  No global context required, context sensitive optimization possible and simple since node specific)
+\end{itemize}
+\end{frame}
 
 
 %---------------------------------------------------------------------
